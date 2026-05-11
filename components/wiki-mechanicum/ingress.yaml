@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiki-js
+  namespace: wiki-js
+  annotations:
+    kube-vip.io/loadbalancerIPs: 192.168.13.13
+    cert-manager.io/cluster-issuer: "local-ca-issuer"
+spec:
+  ingressClassName: cilium
+  rules:
+  - host: wiki.nekropolis.irminsul
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiki
+            port:
+              number: 80
+  - host: wiki.irminsul
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: wiki
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - wiki.irminsul
+    - wiki.nekropolis.irminsul
+    secretName: wiki-certificate

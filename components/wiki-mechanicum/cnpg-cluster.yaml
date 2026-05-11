@@ -1,0 +1,33 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cnpg-wiki-mechanicum
+spec:
+  instances: 3
+
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    kind: ClusterImageCatalog
+    name: postgresql-standard-trixie
+    major: 18
+
+  plugins:
+  - name: barman-cloud.cloudnative-pg.io
+    isWALArchiver: true
+    parameters:
+      barmanObjectName: cnpg-wiki-mechanicum-backups
+  backup:
+    target: prefer-standby
+
+
+  superuserSecret:
+    name: cnpg-wiki-mechanicum-superuser
+
+  bootstrap:
+    initdb:
+      database: wiki
+      owner: wiki
+      secret:
+        name: cnpg-wiki-mechanicum-app-user
+  storage:
+    size: 10Gi
