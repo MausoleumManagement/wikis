@@ -1,0 +1,25 @@
+---
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: cnpg-wiki-denkarium-backups
+spec:
+  retentionPolicy: 30d
+  configuration:
+    # should be in the format of e.g.
+    # endpointURL: bucket.us-east1.linodeobjects.com
+    # destinationPath: "s3://BUCKET_NAME/path/to/folder"
+    # TODO: we want to use https for this...
+    endpointURL: http://garage.irminsul:3900
+    destinationPath: "s3://wiki-denkarium-backups/"
+    #endpointCA:
+    s3Credentials:
+      accessKeyId:
+        name: s3-backup-credentials
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: s3-backup-credentials
+        key: ACCESS_SECRET_KEY
+      region:
+        name: s3-backup-credentials
+        key: REGION

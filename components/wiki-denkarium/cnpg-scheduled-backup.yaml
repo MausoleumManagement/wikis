@@ -1,0 +1,15 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-cnpg-wiki-denkarium
+spec:
+  # this is not the usual crontab syntax
+  # has an extra seconds field at the front
+  # https://pkg.go.dev/github.com/robfig/cron#hdr-CRON_Expression_Format
+  schedule: "0 0 23 * * THU"
+  backupOwnerReference: self
+  cluster:
+    name: cnpg-wiki-denkarium
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io

@@ -1,0 +1,16 @@
+# https://github.com/requarks/wiki/blob/main/dev/helm/values.yaml
+
+ingress:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+externalPostgresql:
+  host: cnpg-wiki-denkarium-rw
+  port: 5432
+  database: wiki
+  username: wiki
+  existingSecret: cnpg-wiki-denkarium-app-user
+  existingSecretKey: password
+  ssl: false

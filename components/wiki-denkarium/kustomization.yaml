@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: wiki-denkarium
+
+
+# https://docs.requarks.io/install/kubernetes
+# https://github.com/requarks/wiki/tree/main/dev/helm
+helmcharts:
+  - name: wiki
+    repo: https://charts.js.wiki
+    version: 3.0.0
+    releaseName: wiki
+    valuesFile: values.yaml
+resources:
+  - namespace.yaml
+  - ingress.yaml
+  - externalsecrets.yaml
+  - cnpg-cluster.yaml
+  - cnpg-objectstore.yaml
+  - cnpg-scheduled-backup.yaml
+  # TODO: figure out why we can't seem to get this patch to work
+  #- patch-delete-helm-pod.yaml
