@@ -232,7 +232,7 @@ metadata:
 spec:
   ingressClassName: cilium
   rules:
-  - host: wiki.nekropolis.irminsul
+  - host: mechanicum.nekropolis.irminsul
     http:
       paths:
       - backend:
@@ -242,7 +242,7 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-  - host: wiki.irminsul
+  - host: mechanicum.irminsul
     http:
       paths:
       - backend:
@@ -254,8 +254,8 @@ spec:
         pathType: Prefix
   tls:
   - hosts:
-    - wiki.irminsul
-    - wiki.nekropolis.irminsul
+    - mechanicum.irminsul
+    - mechanicum.nekropolis.irminsul
     secretName: wiki-certificate
 ---
 apiVersion: postgresql.cnpg.io/v1

@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: cilium
   rules:
-  - host: wiki.nekropolis.irminsul
+  - host: mechanicum.nekropolis.irminsul
     http:
       paths:
       - path: /
@@ -19,7 +19,7 @@ spec:
             name: wiki
             port:
               number: 80
-  - host: wiki.irminsul
+  - host: mechanicum.irminsul
     http:
       paths:
       - path: /
@@ -31,6 +31,6 @@ spec:
               number: 80
   tls:
   - hosts:
-    - wiki.irminsul
-    - wiki.nekropolis.irminsul
+    - mechanicum.irminsul
+    - mechanicum.nekropolis.irminsul
     secretName: wiki-certificate
