@@ -3,13 +3,9 @@
 ingress:
   enabled: false
 
-# Disable the chart's bundled PostgreSQL; we run our own via CloudNativePG.
 postgresql:
   enabled: false
 
-# Connect wiki.js to the CNPG cluster (read-write service).
-# The CNPG-managed secret cnpg-wiki-mechanicum-app-user has the standard
-# kubernetes.io/basic-auth keys: username, password.
 externalPostgresql:
   host: cnpg-wiki-mechanicum-rw
   port: 5432
