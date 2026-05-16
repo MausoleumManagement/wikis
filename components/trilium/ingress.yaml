@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trilium
+  annotations:
+    kube-vip.io/loadbalancerIPs: 192.168.14.12
+    cert-manager.io/cluster-issuer: "local-ca-issuer"
+spec:
+  ingressClassName: cilium
+  rules:
+  - host: trilium.nekropolis.irminsul
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: trilium
+            port:
+              number: 8080
+  - host: trilium.irminsul
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: trilium
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - trilium.irminsul
+    - trilium.nekropolis.irminsul
+    secretName: trilium-certificate

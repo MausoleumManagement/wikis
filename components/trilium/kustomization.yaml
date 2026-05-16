@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: trilium
+
+# https://github.com/TriliumNext/helm-charts
+helmcharts:
+  - name: trilium
+    repo: https://triliumnext.github.io/helm-charts
+    version: 1.3.0
+    releaseName: trilium
+    valuesFile: values.yaml
+resources:
+  - namespace.yaml
+  - ingress.yaml
+  - externalsecrets.yaml
+  - pvc.yaml
