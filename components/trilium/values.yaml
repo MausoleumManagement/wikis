@@ -6,7 +6,7 @@ controllers:
       trilium:
         image:
           repository: triliumnext/notes
-          tag: v0.92.4
+          tag: v0.92.4@sha256:a9c4c251dd8443bae2b54acfa6867c87fb8545ae5eb82e894215ce4efb4b2b6b
           pullPolicy: IfNotPresent
         env:
           TRILIUM_DATA_DIR: /home/node/trilium-data
